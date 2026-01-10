@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collabify Space - One Space. Infinite Connections.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.15), transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.1), transparent 50%),
+                        radial-gradient(ellipse at 20% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .about-item {
+            text-align: center;
+        }
+
+        .about-item i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .about-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .about-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Problems Section */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .problem-card {
+            padding: 2rem;
+        }
+
+        .problem-card i {
+            font-size: 2.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Solutions Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card i {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Services Tabs */
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .tab-button:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            border-color: transparent;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .service-details {
+            padding: 2rem;
+        }
+
+        .service-details h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .service-details .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-purple);
+        }
+
+        .service-features {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .service-features li {
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 1rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Engagement Models */
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .engagement-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .engagement-card i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .engagement-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Process Steps */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .step h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0;
+            margin-top: 6rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 15, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .services-tabs {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Collabify Space</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#problems">Challenges</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>One Space. Infinite Connections.</h1>
+            <p class="tagline">Your partner for staffing, projects, AI solutions, and growth — anywhere in the world, any engagement model, any scale.</p>
+            <a href="#contact" class="cta-button">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Who We Are</h2>
+                <p>Collabify Space is a full-spectrum service & talent solutions company</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-item glass-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Staffing & Recruitment</h3>
+                    <p>Pre-vetted global talent ready to join your team</p>
+                </div>
+                <div class="about-item glass-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Freelance & Project Delivery</h3>
+                    <p>Milestone-based engagements from small to enterprise scale</p>
+                </div>
+                <div class="about-item glass-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Data, IT, AI & Automation</h3>
+                    <p>Advanced technology solutions that drive growth</p>
+                </div>
+                <div class="about-item glass-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Digital, Marketing & Creative</h3>
+                    <p>Brand strategies and creative campaigns that convert</p>
+                </div>
+                <div class="about-item glass-card">
+    <i class="fas fa-code"></i>
+    <h3>Website & App Development</h3>
+    <p>End-to-end development for web & mobile apps, from design to deployment</p>
+</div>
+
+                <div class="about-item glass-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Business Operations & Advisory</h3>
+                    <p>Strategic support to optimize your operations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problems" style="background: rgba(139, 92, 246, 0.03);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Challenges Businesses Face Today</h2>
+                <p>We understand the pain points keeping you from scaling</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card glass-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Finding Reliable Global Talent</h3>
+                    <p>Sourcing skilled professionals across time zones is time-consuming and risky</p>
+                </div>
+                <div class="problem-card glass-card">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h3>Fragmented Freelancers & Agencies</h3>
+                    <p>Managing multiple vendors creates inefficiencies and communication gaps</p>
+                </div>
+                <div class="problem-card glass-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Data, AI, Tech & Operations</h3>
+                    <p>Handling complex technical requirements efficiently is challenging</p>
+                </div>
+                <div class="problem-card glass-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Scaling Without High Fixed Costs</h3>
+                    <p>Growing teams shouldn't mean breaking the bank on overhead</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Collabify Space is Your Solution</h2>
+                <p>We don't just place talent — we build teams that perform, powered by AI and insights</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card glass-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Pre-Vetted Talent & Team Pods</h3>
+                    <p>Every professional is carefully screened and ready to deliver from day one</p>
+                </div>
+                <div class="solution-card glass-card">
+                    <i class="fas fa-sliders-h"></i>
+                    <h3>Flexible Engagement Models</h3>
+                    <p>Hourly, full-time, contract, or project-based — choose what works for you</p>
+                </div>
+                <div class="solution-card glass-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Coverage</h3>
+                    <p>Support across all time zones including USA, UK, Europe, India, and APAC</p>
+                </div>
+                <div class="solution-card glass-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Cost-Effective Solutions</h3>
+                    <p>Market-standard pricing without compromising on quality</p>
+                </div>
+                <div class="solution-card glass-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI-Powered Services</h3>
+                    <p>Accelerate decision-making, data processing, and insights with cutting-edge AI</p>
+                </div>
+                <div class="solution-card glass-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>One Partner, Multiple Solutions</h3>
+                    <p>Complete accountability and seamless coordination across all services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: rgba(59, 130, 246, 0.03);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Service Ecosystem</h2>
+                <p>Coverage across all verticals and sectors</p>
+            </div>
+
+            <div class="services-tabs">
+                <button class="tab-button active" onclick="openTab(event, 'staffing')">
+                    <i class="fas fa-users"></i> Staffing & Talent
+                </button>
+                <button class="tab-button" onclick="openTab(event, 'data-ai')">
+                    <i class="fas fa-robot"></i> Data, IT & AI
+                </button>
+                <button class="tab-button" onclick="openTab(event, 'digital')">
+                    <i class="fas fa-bullhorn"></i> Digital & Marketing
+                </button>
+                <button class="tab-button" onclick="openTab(event, 'fintech')">
+                    <i class="fas fa-chart-pie"></i> FinTech & Consulting
+                </button>
+                <button class="tab-button" onclick="openTab(event, 'business')">
+                    <i class="fas fa-briefcase"></i> Business Operations
+                </button>
+                <button class="tab-button" onclick="openTab(event, 'web-app')">
+    <i class="fas fa-code"></i> Web & App Development
+</button>
+            </div>
+
+            <div id="staffing" class="tab-content active">
+                <div class="glass-card service-details">
+                    <h3><i class="fas fa-users"></i> Staffing & Talent Solutions</h3>
+                    <ul class="service-features">
+                        <li><strong>Remote / Global Staffing:</strong> Full-time, part-time, and contract positions across all time zones</li>
+                        <li><strong>Freelance & Milestone-Based Engagements:</strong> From small projects to enterprise-scale deliveries</li>
+                        <li><strong>Dedicated Teams / Pods:</strong> Specialized teams for growth, data, IT, AI, marketing, and operations</li>
+                        <li><strong>Flexible Timelines:</strong> Adapt to your project needs with scalable resources</li>
+                        <li><strong>Cost-Effective:</strong> Market-standard pricing with premium quality talent</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="data-ai" class="tab-content">
+                <div class="glass-card service-details">
+                    <h3><i class="fas fa-robot"></i> Data, IT, AI & Automation</h3>
+                    <p class="tagline">"From raw data to actionable AI insights — we make your information work smarter, faster, better."</p>
+                    <ul class="service-features">
+                        <li><strong>Data Services:</strong> Web scraping, data cleaning, pipeline setup, and ETL processes</li>
+                        <li><strong>AI & ML Solutions:</strong> Predictive analytics, automation workflows, and recommendation engines</li>
+                        <li><strong>Analytics & BI:</strong> Interactive dashboards, comprehensive reports, and actionable insights</li>
+                        <li><strong>Automation:</strong> Python scripting, No-Code solutions, and workflow optimization</li>
+                        <li><strong>IT & Software Support:</strong> Quality assurance, DevOps assistance, and technical infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="digital" class="tab-content">
+                <div class="glass-card service-details">
+                    <h3><i class="fas fa-bullhorn"></i> Digital, Marketing & Creative</h3>
+                    <ul class="service-features">
+                        <li><strong>Social Media Strategy & Execution:</strong> End-to-end management across all platforms</li>
+                        <li><strong>Performance Marketing:</strong> Optimized funnels, conversion rate optimization, and ROI tracking</li>
+                        <li><strong>Branding & Design:</strong> Complete brand identity and creative campaigns</li>
+                        <li><strong>Video & Content Production:</strong> Motion graphics, reels, and engaging video content</li>
+                        <li><strong>Creative Campaigns:</strong> Innovative strategies that drive engagement and conversions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="fintech" class="tab-content">
+                <div class="glass-card service-details">
+                    <h3><i class="fas fa-chart-pie"></i> FinTech & Specialized Consulting</h3>
+                    <ul class="service-features">
+                        <li><strong>Financial Analysis:</strong> Custom calculators, financial models, and performance dashboards</li>
+                        <li><strong>Process Consulting:</strong> Operations optimization and efficiency improvements</li>
+                        <li><strong>Market Research:</strong> Competitive benchmarking and industry analysis</li>
+                        <li><strong>Advisory Services:</strong> Strategic guidance for growth and expansion</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="business" class="tab-content">
+                <div class="glass-card service-details">
+                    <h3><i class="fas fa-briefcase"></i> Non-IT & Business Operations</h3>
+                    <ul class="service-features">
+                        <li><strong>Founder's Office & Executive Support:</strong> Strategic assistance for leadership teams</li>
+                        <li><strong>Community & CRM Management:</strong> Building and nurturing customer relationships</li>
+                        <li><strong>Sales & Outreach Execution:</strong> Lead generation and conversion optimization</li>
+                        <li><strong>SOP Creation:</strong> Standard operating procedures and workflow management</li>
+                        <li><strong>Business Process Optimization:</strong> Streamline operations for maximum efficiency</li>
+                    </ul>
+                </div>
+</div>
+<div id="web-app" class="tab-content">
+    <div class="glass-card service-details">
+        <h3><i class="fas fa-code"></i> Web & App Development</h3>
+        <p class="tagline">"Custom websites and mobile applications tailored to your business needs."</p>
+        <ul class="service-features">
+            <li><strong>Responsive Websites:</strong> Fast, SEO-friendly, and modern designs</li>
+            <li><strong>Mobile Applications:</strong> iOS & Android apps with smooth UX/UI</li>
+            <li><strong>CMS & E-Commerce:</strong> WordPress, Shopify, and custom solutions</li>
+            <li><strong>Maintenance & Support:</strong> Updates, bug fixes, and performance optimization</li>
+            <li><strong>End-to-End Project Delivery:</strong> From design to deployment and hosting</li>
+        </ul>
+    </div>
+</div>
+            <!-- Engagement Models -->
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Engagement Models</h3>
+                <div class="engagement-grid">
+                    <div class="engagement-card glass-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Hourly Consulting</h4>
+                        <p>Advisory & support</p>
+                    </div>
+                    <div class="engagement-card glass-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h4>Full-Time Dedicated</h4>
+                        <p>Long-term resources</p>
+                    </div>
+                    <div class="engagement-card glass-card">
+                        <i class="fas fa-file-contract"></i>
+                        <h4>Contract / Project</h4>
+                        <p>Defined scope work</p>
+                    </div>
+                    <div class="engagement-card glass-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Scalable Partnerships</h4>
+                        <p>Startups to enterprise</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>How We Work</h2>
+                <p>One partner, multiple solutions, complete accountability</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Understand</h4>
+                    <p>Client goals, timelines, and scope</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Map</h4>
+                    <p>Required talent & services</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Deploy</h4>
+                    <p>Talent & execution plan</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Monitor</h4>
+                    <p>Report & optimize continuously</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>Scale</h4>
+                    <p>Pivot as needed for growth</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Delivery -->
+    <section style="background: rgba(236, 72, 153, 0.03);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Global Delivery & Coverage</h2>
+                <p>Supporting businesses worldwide with seamless coordination</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-globe-americas" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
+                    <h3>Multi-Region Support</h3>
+                    <p>USA, UK, Europe, India, APAC and beyond</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-user-check" style="font-size: 3rem; color: var(--accent-purple); margin-bottom: 1rem;"></i>
+                    <h3>Pre-Vetted Talent</h3>
+                    <p>Aligned to your time zones and requirements</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-chart-bar" style="font-size: 3rem; color: var(--accent-pink); margin-bottom: 1rem;"></i>
+                    <h3>Performance Monitoring</h3>
+                    <p>Ongoing reporting and optimization</p>
+                </div>
+                <div class="glass-card" style="text-align: center;">
+                    <i class="fas fa-expand-arrows-alt" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
+                    <h3>Quick Scaling</h3>
+                    <p>Easy replacement and expansion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/CTA Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="glass-card" style="text-align: center; padding: 4rem 2rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ready to Get Started?</h2>
+                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Connect with our Business Development team for a discovery call. We'll help understand your needs and match you with the right team & service model, including AI-driven solutions.
+                </p>
+                <a href="https://www.instagram.com/collabify_services_page/" class="cta-button" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); margin-right: 1rem; margin-bottom: 1rem;" target="_blank">
+    <i class="fab fa-instagram"></i> Chat on Instagram
+</a>
+
+<a href="https://wa.me/8341632939" class="cta-button" style="margin-right: 1rem; margin-bottom: 1rem;" target="_blank">
+    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+</a>
+
+<a href="https://mail.google.com/mail/?view=cm&to=team@collabifyspace.com" 
+   class="cta-button" 
+   style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)); margin-bottom: 1rem;" 
+   target="_blank" 
+   rel="noopener noreferrer">
+    <i class="fas fa-envelope"></i> Send us an Email
+</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Collabify Space</h3>
+                    <p>One Space. Infinite Connections.</p>
+                    <p>Your global partner for staffing, projects, AI solutions, and growth.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#about" style="color: var(--text-secondary); text-decoration: none;">About Us</a></p>
+                    <p><a href="#services" style="color: var(--text-secondary); text-decoration: none;">Services</a></p>
+                    <p><a href="#process" style="color: var(--text-secondary); text-decoration: none;">How We Work</a></p>
+                    <p><a href="#contact" style="color: var(--text-secondary); text-decoration: none;">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://https://www.instagram.com/collabify_services_page/" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/8341632939" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                         <!-- Email icon using Gmail web link -->
+    <a href="https://mail.google.com/mail/?view=cm&to=team@collabifyspace.com" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       title="Email">
+        <i class="fas fa-envelope"></i>
+                        <a href="https://linkedin.com/company/collabifyspace" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Collabify Space. All rights reserved. | Global Talent, Growth & Execution Partner</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenu.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Tab Functionality
+        function openTab(evt, tabName) {
+            const tabContent = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove('active');
+            }
+
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card, .step, .about-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
