@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Site Verification -->
-<meta name="google-site-verification" content="-RN2tGj7ZvI0javbPTakfEUQ784foy1443FLv-P6yN0" />
-    
-    <title>Collabify Space - One Space. Infinite Connections.</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Collabify Space - Your Partner in Growth, Tech & Automation</title>
     <style>
         * {
             margin: 0;
@@ -17,58 +12,47 @@
         }
 
         :root {
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --accent-purple: #8b5cf6;
-            --accent-blue: #3b82f6;
-            --accent-pink: #ec4899;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #13131a;
+            --bg-tertiary: #1a1a24;
             --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.18);
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --text-secondary: #a0a0b0;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --accent-green: #22c55e;
+            --accent-purple: #667eea;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        .bg-animation {
+        /* Header Navigation */
+        .header {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.15), transparent 50%),
-                        radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.1), transparent 50%),
-                        radial-gradient(ellipse at 20% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+        .header.scrolled {
             background: rgba(10, 10, 15, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            z-index: 1000;
-            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
         }
 
-        nav .container {
-            max-width: 1200px;
+        .header-container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,46 +60,77 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
             list-style: none;
         }
 
-        .nav-links a {
+        .nav-menu a {
             color: var(--text-secondary);
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s;
-            font-size: 0.95rem;
+            position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-purple);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
             color: var(--text-primary);
         }
 
-        .mobile-menu {
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
             display: none;
+            flex-direction: column;
+            gap: 6px;
             cursor: pointer;
-            font-size: 1.5rem;
+            z-index: 1001;
         }
 
-        /* Container */
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            padding: 6rem 0;
-            position: relative;
+            padding: 0 40px;
         }
 
         /* Hero Section */
@@ -124,361 +139,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding-top: 80px;
+            max-width: 900px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue), var(--accent-pink));
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 1s ease;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .hero .tagline {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+        .hero p {
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.2s both;
+            margin-bottom: 48px;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: fadeInUp 1s ease 0.4s both;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
-        }
-
-        /* Glass Card */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
-        }
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .about-item {
-            text-align: center;
-        }
-
-        .about-item i {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .about-item h3 {
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .about-item p {
-            color: var(--text-secondary);
-        }
-
-        /* Problems Section */
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .problem-card {
-            padding: 2rem;
-        }
-
-        .problem-card i {
-            font-size: 2.5rem;
-            color: var(--accent-pink);
-            margin-bottom: 1rem;
-        }
-
-        .problem-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        /* Solutions Grid */
-        .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .solution-card i {
-            font-size: 2.5rem;
-            color: var(--accent-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .solution-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* Services Tabs */
-        .services-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 1rem 2rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .tab-button:hover {
-            border-color: var(--accent-purple);
-            color: var(--text-primary);
-        }
-
-        .tab-button.active {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            border-color: transparent;
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .service-details {
-            padding: 2rem;
-        }
-
-        .service-details h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-purple);
-        }
-
-        .service-details .tagline {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--accent-blue);
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-purple);
-        }
-
-        .service-features {
-            list-style: none;
-            display: grid;
-            gap: 1rem;
-        }
-
-        .service-features li {
-            padding: 1rem 1rem 1rem 3rem;
-            background: rgba(59, 130, 246, 0.05);
-            border-radius: 10px;
-            position: relative;
-        }
-
-        .service-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 1rem;
-            color: var(--accent-blue);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* Engagement Models */
-        .engagement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .engagement-card {
-            text-align: center;
-            padding: 2rem 1.5rem;
-        }
-
-        .engagement-card i {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .engagement-card h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        /* Process Steps */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .step h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .step p {
-            color: var(--text-secondary);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
-            padding: 3rem 0;
-            margin-top: 6rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            color: var(--accent-purple);
-        }
-
-        .footer-section p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
-            border-color: transparent;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-secondary);
-        }
-
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -490,511 +198,923 @@
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-purple);
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Audience Section */
+        .audience {
+            padding: 120px 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .audience h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .audience-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .audience-card {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+            padding: 48px 32px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .audience-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .audience-icon {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .audience-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .audience-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Services Section - Vertical Stacked with Scroll Animation */
+        .services-wrapper {
+            background: var(--bg-primary);
+        }
+
+        .services-track {
+            position: relative;
+        }
+
+        .service-slide {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px;
+            opacity: 0.3;
+            transition: opacity 0.6s ease;
+        }
+
+        .service-slide.in-view {
+            opacity: 1;
+        }
+
+        .service-slide::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(100px);
+        }
+
+        .service-slide.blue::before {
+            background: var(--accent-blue);
+        }
+
+        .service-slide.orange::before {
+            background: var(--accent-orange);
+        }
+
+        .service-slide.green::before {
+            background: var(--accent-green);
+        }
+
+        .service-content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .service-slide.in-view .service-content-wrapper {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+        }
+
+        .service-slide.in-view .service-visual {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .service-icon-large {
+            font-size: 12rem;
+            filter: drop-shadow(0 0 40px currentColor);
+            opacity: 0.9;
+        }
+
+        .service-slide.blue .service-icon-large {
+            color: var(--accent-blue);
+        }
+
+        .service-slide.orange .service-icon-large {
+            color: var(--accent-orange);
+        }
+
+        .service-slide.green .service-icon-large {
+            color: var(--accent-green);
+        }
+
+        .service-info {
+            background: rgba(26, 26, 36, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px;
+        }
+
+        .service-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .service-info p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .service-pricing {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-pricing h4 {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-pricing p {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin: 4px 0;
+            font-weight: 600;
+        }
+
+        .service-for {
+            margin-bottom: 32px;
+        }
+
+        .service-for h4 {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-for p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .service-slide.blue .btn-primary {
+            background: var(--accent-blue);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+
+        .service-slide.orange .btn-primary {
+            background: var(--accent-orange);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+
+        .service-slide.green .btn-primary {
+            background: var(--accent-green);
+            box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .scroll-indicator::after {
+            content: '→';
+            animation: slideRight 1.5s ease-in-out infinite;
+        }
+
+        @keyframes slideRight {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            position: relative;
+        }
+
+        .trust h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 64px;
+            font-weight: 800;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 40px 24px;
+            background: rgba(26, 26, 36, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .trust-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .trust-item-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .trust-item:hover .trust-item-icon {
+            transform: scale(1.1);
+        }
+
+        .trust-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .trust-item p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--bg-primary);
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 64px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(26, 26, 36, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-alternatives {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-alternatives p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 0;
+            z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-cta .cta-group {
+            margin: 0;
+        }
+
+        .sticky-cta .btn {
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            to {
-                opacity: 1;
+
+            .service-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .service-visual {
+                display: none;
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
                 width: 100%;
-                background: rgba(10, 10, 15, 0.95);
+                height: 100vh;
+                background: rgba(10, 10, 15, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
-                padding: 2rem;
-                gap: 1rem;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                transition: right 0.3s;
+                font-size: 1.5rem;
             }
 
-            .nav-links.active {
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .hamburger {
                 display: flex;
             }
 
-            .mobile-menu {
-                display: block;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            section {
-                padding: 4rem 0;
+            .hero p {
+                font-size: 1.125rem;
             }
 
-            .services-tabs {
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding-bottom: 1rem;
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-wrapper {
+                background: var(--bg-primary);
+            }
+
+            .service-slide {
+                min-height: 100vh;
+                padding: 80px 24px;
+            }
+
+            .service-content-wrapper {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .service-visual {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .service-info {
+                padding: 32px;
+            }
+
+            .service-info h3 {
+                font-size: 2rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 32px 24px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .container, .header-container {
+                padding: 0 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
+    <!-- Header Navigation -->
+    <header class="header" id="header">
+        <div class="header-container">
             <div class="logo">Collabify Space</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#problems">Challenges</a></li>
-                <li><a href="#solutions">Solutions</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu" id="mobileMenu">
-                <i class="fas fa-bars"></i>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h1>One Space. Infinite Connections.</h1>
-            <p class="tagline">Your partner for staffing, projects, AI solutions, and growth — anywhere in the world, any engagement model, any scale.</p>
-            <a href="#contact" class="cta-button">Get Started Today</a>
+        <div class="hero-content">
+            <h1>Collabify Space: Your Partner in Growth, Tech & Automation</h1>
+            <p>Helping agencies, startups, and businesses deliver dashboards, websites, and digital marketing campaigns — faster, smarter, and scalable.</p>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary">Request a Sample Dashboard</a>
+                <a href="#contact" class="btn btn-secondary">Get a Website Quote</a>
+                <a href="#contact" class="btn btn-secondary">Book a Marketing Call</a>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
+    <!-- Audience Section -->
+    <section class="audience" id="about">
         <div class="container">
-            <div class="section-header">
-                <h2>Who We Are</h2>
-                <p>Collabify Space is a full-spectrum service & talent solutions company</p>
-            </div>
-            <div class="about-grid">
-                <div class="about-item glass-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Staffing & Recruitment</h3>
-                    <p>Pre-vetted global talent ready to join your team</p>
+            <h2>Who We Serve</h2>
+            <p class="audience-subtitle">Whether you're an agency managing multiple clients or a business looking to scale, we deliver the tools and strategies you need to succeed.</p>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <span class="audience-icon">🏢</span>
+                    <h3>Agencies</h3>
+                    <p>Performance, lead-gen, or niche-specific agencies looking to scale client delivery</p>
                 </div>
-                <div class="about-item glass-card">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>Freelance & Project Delivery</h3>
-                    <p>Milestone-based engagements from small to enterprise scale</p>
+                <div class="audience-card">
+                    <span class="audience-icon">🚀</span>
+                    <h3>Startups & SMBs</h3>
+                    <p>Growing businesses needing professional tech solutions without enterprise costs</p>
                 </div>
-                <div class="about-item glass-card">
-                    <i class="fas fa-robot"></i>
-                    <h3>Data, IT, AI & Automation</h3>
-                    <p>Advanced technology solutions that drive growth</p>
-                </div>
-                <div class="about-item glass-card">
-                    <i class="fas fa-palette"></i>
-                    <h3>Digital, Marketing & Creative</h3>
-                    <p>Brand strategies and creative campaigns that convert</p>
-                </div>
-                <div class="about-item glass-card">
-    <i class="fas fa-code"></i>
-    <h3>Website & App Development</h3>
-    <p>End-to-end development for web & mobile apps, from design to deployment</p>
-</div>
-
-                <div class="about-item glass-card">
-                    <i class="fas fa-briefcase"></i>
-                    <h3>Business Operations & Advisory</h3>
-                    <p>Strategic support to optimize your operations</p>
+                <div class="audience-card">
+                    <span class="audience-icon">💼</span>
+                    <h3>All Businesses</h3>
+                    <p>Any company requiring automated reporting, modern websites, or digital marketing</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problems Section -->
-    <section id="problems" style="background: rgba(139, 92, 246, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Challenges Businesses Face Today</h2>
-                <p>We understand the pain points keeping you from scaling</p>
+    <!-- Services Section - Vertically Stacked -->
+    <div class="services-wrapper" id="services">
+        <div class="services-track">
+            
+            <!-- Service 1: Dashboard & Automation -->
+            <div class="service-slide blue">
+                <div class="service-content-wrapper">
+                    <div class="service-visual">
+                        <div class="service-icon-large">📊</div>
+                    </div>
+                    <div class="service-info">
+                        <h3>Dashboard & Automation</h3>
+                        <p>Client-ready dashboards, automated lead tracking, and seamless CRM & WhatsApp integration. Turn raw data into actionable insights in days, not weeks.</p>
+
+                        <div class="service-pricing">
+                            <h4>Pricing</h4>
+                            <p>One-time: $400–$1,200</p>
+                            <p>Monthly: $200–$400</p>
+                        </div>
+
+                        <div class="service-for">
+                            <h4>Perfect For</h4>
+                            <p>Agencies managing multiple clients, SMBs and startups needing automated reporting, any business requiring clear performance dashboards</p>
+                        </div>
+
+                        <a href="#contact" class="btn btn-primary">Request a Sample Dashboard</a>
+                    </div>
+                </div>
             </div>
-            <div class="problems-grid">
-                <div class="problem-card glass-card">
-                    <i class="fas fa-search"></i>
-                    <h3>Finding Reliable Global Talent</h3>
-                    <p>Sourcing skilled professionals across time zones is time-consuming and risky</p>
-                </div>
-                <div class="problem-card glass-card">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <h3>Fragmented Freelancers & Agencies</h3>
-                    <p>Managing multiple vendors creates inefficiencies and communication gaps</p>
-                </div>
-                <div class="problem-card glass-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Data, AI, Tech & Operations</h3>
-                    <p>Handling complex technical requirements efficiently is challenging</p>
-                </div>
-                <div class="problem-card glass-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Scaling Without High Fixed Costs</h3>
-                    <p>Growing teams shouldn't mean breaking the bank on overhead</p>
+
+            <!-- Service 2: Website Development -->
+            <div class="service-slide orange">
+                <div class="service-content-wrapper">
+                    <div class="service-visual">
+                        <div class="service-icon-large">💻</div>
+                    </div>
+                    <div class="service-info">
+                        <h3>Website Development</h3>
+                        <p>Responsive websites and full-stack apps optimized for speed and conversion. From design to deployment, we build web solutions that drive results.</p>
+
+                        <div class="service-pricing">
+                            <h4>Pricing</h4>
+                            <p>Starter: $800–$2,000</p>
+                            <p>Web App: $2,500+</p>
+                        </div>
+
+                        <div class="service-for">
+                            <h4>Perfect For</h4>
+                            <p>Agencies delivering client websites, SMBs and e-commerce brands, startups needing professional web presence, any business wanting conversion-optimized solutions</p>
+                        </div>
+
+                        <a href="#contact" class="btn btn-primary">Get a Website Quote</a>
+                    </div>
                 </div>
             </div>
+
+            <!-- Service 3: Digital Marketing -->
+            <div class="service-slide green">
+                <div class="service-content-wrapper">
+                    <div class="service-visual">
+                        <div class="service-icon-large">📈</div>
+                    </div>
+                    <div class="service-info">
+                        <h3>Digital Marketing</h3>
+                        <p>On-page and off-page SEO, content creation for blogs and social media, and comprehensive reporting. Build organic visibility that lasts.</p>
+
+                        <div class="service-pricing">
+                            <h4>Pricing</h4>
+                            <p>SEO + Content: $500–$1,200/mo</p>
+                        </div>
+
+                        <div class="service-for">
+                            <h4>Perfect For</h4>
+                            <p>Agencies seeking SEO and content support, SMBs and startups improving organic traffic, brands wanting consistent content and SEO growth</p>
+                        </div>
+
+                        <a href="#contact" class="btn btn-primary">Book a Marketing Call</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
-
-    <!-- Solutions Section -->
-    <section id="solutions">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Collabify Space is Your Solution</h2>
-                <p>We don't just place talent — we build teams that perform, powered by AI and insights</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card glass-card">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Pre-Vetted Talent & Team Pods</h3>
-                    <p>Every professional is carefully screened and ready to deliver from day one</p>
-                </div>
-                <div class="solution-card glass-card">
-                    <i class="fas fa-sliders-h"></i>
-                    <h3>Flexible Engagement Models</h3>
-                    <p>Hourly, full-time, contract, or project-based — choose what works for you</p>
-                </div>
-                <div class="solution-card glass-card">
-                    <i class="fas fa-globe"></i>
-                    <h3>Global Coverage</h3>
-                    <p>Support across all time zones including USA, UK, Europe, India, and APAC</p>
-                </div>
-                <div class="solution-card glass-card">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h3>Cost-Effective Solutions</h3>
-                    <p>Market-standard pricing without compromising on quality</p>
-                </div>
-                <div class="solution-card glass-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI-Powered Services</h3>
-                    <p>Accelerate decision-making, data processing, and insights with cutting-edge AI</p>
-                </div>
-                <div class="solution-card glass-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>One Partner, Multiple Solutions</h3>
-                    <p>Complete accountability and seamless coordination across all services</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" style="background: rgba(59, 130, 246, 0.03);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Service Ecosystem</h2>
-                <p>Coverage across all verticals and sectors</p>
-            </div>
-
-            <div class="services-tabs">
-                <button class="tab-button active" onclick="openTab(event, 'staffing')">
-                    <i class="fas fa-users"></i> Staffing & Talent
-                </button>
-                <button class="tab-button" onclick="openTab(event, 'data-ai')">
-                    <i class="fas fa-robot"></i> Data, IT & AI
-                </button>
-                <button class="tab-button" onclick="openTab(event, 'digital')">
-                    <i class="fas fa-bullhorn"></i> Digital & Marketing
-                </button>
-                <button class="tab-button" onclick="openTab(event, 'fintech')">
-                    <i class="fas fa-chart-pie"></i> FinTech & Consulting
-                </button>
-                <button class="tab-button" onclick="openTab(event, 'business')">
-                    <i class="fas fa-briefcase"></i> Business Operations
-                </button>
-                <button class="tab-button" onclick="openTab(event, 'web-app')">
-    <i class="fas fa-code"></i> Web & App Development
-</button>
-            </div>
-
-            <div id="staffing" class="tab-content active">
-                <div class="glass-card service-details">
-                    <h3><i class="fas fa-users"></i> Staffing & Talent Solutions</h3>
-                    <ul class="service-features">
-                        <li><strong>Remote / Global Staffing:</strong> Full-time, part-time, and contract positions across all time zones</li>
-                        <li><strong>Freelance & Milestone-Based Engagements:</strong> From small projects to enterprise-scale deliveries</li>
-                        <li><strong>Dedicated Teams / Pods:</strong> Specialized teams for growth, data, IT, AI, marketing, and operations</li>
-                        <li><strong>Flexible Timelines:</strong> Adapt to your project needs with scalable resources</li>
-                        <li><strong>Cost-Effective:</strong> Market-standard pricing with premium quality talent</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="data-ai" class="tab-content">
-                <div class="glass-card service-details">
-                    <h3><i class="fas fa-robot"></i> Data, IT, AI & Automation</h3>
-                    <p class="tagline">"From raw data to actionable AI insights — we make your information work smarter, faster, better."</p>
-                    <ul class="service-features">
-                        <li><strong>Data Services:</strong> Web scraping, data cleaning, pipeline setup, and ETL processes</li>
-                        <li><strong>AI & ML Solutions:</strong> Predictive analytics, automation workflows, and recommendation engines</li>
-                        <li><strong>Analytics & BI:</strong> Interactive dashboards, comprehensive reports, and actionable insights</li>
-                        <li><strong>Automation:</strong> Python scripting, No-Code solutions, and workflow optimization</li>
-                        <li><strong>IT & Software Support:</strong> Quality assurance, DevOps assistance, and technical infrastructure</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="digital" class="tab-content">
-                <div class="glass-card service-details">
-                    <h3><i class="fas fa-bullhorn"></i> Digital, Marketing & Creative</h3>
-                    <ul class="service-features">
-                        <li><strong>Social Media Strategy & Execution:</strong> End-to-end management across all platforms</li>
-                        <li><strong>Performance Marketing:</strong> Optimized funnels, conversion rate optimization, and ROI tracking</li>
-                        <li><strong>Branding & Design:</strong> Complete brand identity and creative campaigns</li>
-                        <li><strong>Video & Content Production:</strong> Motion graphics, reels, and engaging video content</li>
-                        <li><strong>Creative Campaigns:</strong> Innovative strategies that drive engagement and conversions</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="fintech" class="tab-content">
-                <div class="glass-card service-details">
-                    <h3><i class="fas fa-chart-pie"></i> FinTech & Specialized Consulting</h3>
-                    <ul class="service-features">
-                        <li><strong>Financial Analysis:</strong> Custom calculators, financial models, and performance dashboards</li>
-                        <li><strong>Process Consulting:</strong> Operations optimization and efficiency improvements</li>
-                        <li><strong>Market Research:</strong> Competitive benchmarking and industry analysis</li>
-                        <li><strong>Advisory Services:</strong> Strategic guidance for growth and expansion</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div id="business" class="tab-content">
-                <div class="glass-card service-details">
-                    <h3><i class="fas fa-briefcase"></i> Non-IT & Business Operations</h3>
-                    <ul class="service-features">
-                        <li><strong>Founder's Office & Executive Support:</strong> Strategic assistance for leadership teams</li>
-                        <li><strong>Community & CRM Management:</strong> Building and nurturing customer relationships</li>
-                        <li><strong>Sales & Outreach Execution:</strong> Lead generation and conversion optimization</li>
-                        <li><strong>SOP Creation:</strong> Standard operating procedures and workflow management</li>
-                        <li><strong>Business Process Optimization:</strong> Streamline operations for maximum efficiency</li>
-                    </ul>
-                </div>
-</div>
-<div id="web-app" class="tab-content">
-    <div class="glass-card service-details">
-        <h3><i class="fas fa-code"></i> Web & App Development</h3>
-        <p class="tagline">"Custom websites and mobile applications tailored to your business needs."</p>
-        <ul class="service-features">
-            <li><strong>Responsive Websites:</strong> Fast, SEO-friendly, and modern designs</li>
-            <li><strong>Mobile Applications:</strong> iOS & Android apps with smooth UX/UI</li>
-            <li><strong>CMS & E-Commerce:</strong> WordPress, Shopify, and custom solutions</li>
-            <li><strong>Maintenance & Support:</strong> Updates, bug fixes, and performance optimization</li>
-            <li><strong>End-to-End Project Delivery:</strong> From design to deployment and hosting</li>
-        </ul>
     </div>
-</div>
-            <!-- Engagement Models -->
-            <div style="margin-top: 4rem;">
-                <h3 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Engagement Models</h3>
-                <div class="engagement-grid">
-                    <div class="engagement-card glass-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>Hourly Consulting</h4>
-                        <p>Advisory & support</p>
-                    </div>
-                    <div class="engagement-card glass-card">
-                        <i class="fas fa-user-tie"></i>
-                        <h4>Full-Time Dedicated</h4>
-                        <p>Long-term resources</p>
-                    </div>
-                    <div class="engagement-card glass-card">
-                        <i class="fas fa-file-contract"></i>
-                        <h4>Contract / Project</h4>
-                        <p>Defined scope work</p>
-                    </div>
-                    <div class="engagement-card glass-card">
-                        <i class="fas fa-chart-line"></i>
-                        <h4>Scalable Partnerships</h4>
-                        <p>Startups to enterprise</p>
-                    </div>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container">
+            <h2>Why Collabify Space?</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-item-icon">⚡</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get dashboards in days, websites in weeks. We work on your timeline without compromising quality.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">🎯</div>
+                    <h3>Fixed Scope</h3>
+                    <p>Clear pricing, defined deliverables. No surprise costs or scope creep—just results you can count on.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">🤝</div>
+                    <h3>White-Label Ready</h3>
+                    <p>Perfect for agencies. We work behind the scenes so you can present our work as your own.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-item-icon">🌍</div>
+                    <h3>Global Coverage</h3>
+                    <p>24/7 support with teams across time zones. We're always here when you need us.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process">
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2>How We Work</h2>
-                <p>One partner, multiple solutions, complete accountability</p>
-            </div>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>Understand</h4>
-                    <p>Client goals, timelines, and scope</p>
+            <h2>Let's Build Something Great Together</h2>
+            <p class="contact-subtitle">Tell us about your project and we'll get back to you within 24 hours</p>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>Map</h4>
-                    <p>Required talent & services</p>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="john@company.com">
                 </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>Deploy</h4>
-                    <p>Talent & execution plan</p>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
                 </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>Monitor</h4>
-                    <p>Report & optimize continuously</p>
+
+                <div class="form-group">
+                    <label for="service">Service Interested In *</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service...</option>
+                        <option value="dashboard">Dashboard & Automation</option>
+                        <option value="website">Website Development</option>
+                        <option value="marketing">Digital Marketing (SEO & Content)</option>
+                        <option value="multiple">Multiple Services</option>
+                        <option value="other">Not Sure / Other</option>
+                    </select>
                 </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h4>Scale</h4>
-                    <p>Pivot as needed for growth</p>
+
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project, timeline, and any specific requirements..."></textarea>
                 </div>
-            </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+
+                <div class="contact-alternatives">
+                    <p>Prefer to reach out directly?</p>
+                    <div class="contact-links">
+                        <a href="https://wa.me/1234567890" class="contact-link">
+                            <span>💬</span> WhatsApp
+                        </a>
+                        <a href="mailto:hello@collabifyspace.com" class="contact-link">
+                            <span>✉️</span> Email Us
+                        </a>
+                        <a href="https://calendly.com/collabifyspace" class="contact-link">
+                            <span>📅</span> Schedule Call
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
-    <!-- Global Delivery -->
-    <section style="background: rgba(236, 72, 153, 0.03);">
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta" id="stickyCta">
         <div class="container">
-            <div class="section-header">
-                <h2>Global Delivery & Coverage</h2>
-                <p>Supporting businesses worldwide with seamless coordination</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="glass-card" style="text-align: center;">
-                    <i class="fas fa-globe-americas" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
-                    <h3>Multi-Region Support</h3>
-                    <p>USA, UK, Europe, India, APAC and beyond</p>
-                </div>
-                <div class="glass-card" style="text-align: center;">
-                    <i class="fas fa-user-check" style="font-size: 3rem; color: var(--accent-purple); margin-bottom: 1rem;"></i>
-                    <h3>Pre-Vetted Talent</h3>
-                    <p>Aligned to your time zones and requirements</p>
-                </div>
-                <div class="glass-card" style="text-align: center;">
-                    <i class="fas fa-chart-bar" style="font-size: 3rem; color: var(--accent-pink); margin-bottom: 1rem;"></i>
-                    <h3>Performance Monitoring</h3>
-                    <p>Ongoing reporting and optimization</p>
-                </div>
-                <div class="glass-card" style="text-align: center;">
-                    <i class="fas fa-expand-arrows-alt" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
-                    <h3>Quick Scaling</h3>
-                    <p>Easy replacement and expansion</p>
-                </div>
+            <div class="cta-group">
+                <a href="#contact" class="btn btn-primary">Request a Sample Dashboard</a>
+                <a href="#contact" class="btn btn-secondary">Get a Website Quote</a>
+                <a href="#contact" class="btn btn-secondary">Book a Marketing Call</a>
             </div>
         </div>
-    </section>
-
-    <!-- Contact/CTA Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="glass-card" style="text-align: center; padding: 4rem 2rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Ready to Get Started?</h2>
-                <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Connect with our Business Development team for a discovery call. We'll help understand your needs and match you with the right team & service model, including AI-driven solutions.
-                </p>
-                <a href="https://www.instagram.com/collabify_services_page/" class="cta-button" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); margin-right: 1rem; margin-bottom: 1rem;" target="_blank">
-    <i class="fab fa-instagram"></i> Chat on Instagram
-</a>
-
-<a href="https://wa.me/918341632939" class="cta-button" style="margin-right: 1rem; margin-bottom: 1rem;" target="_blank">
-    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-</a>
-
-<a href="https://mail.google.com/mail/?view=cm&to=team@collabifyspace.com" 
-   class="cta-button" 
-   style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)); margin-bottom: 1rem;" 
-   target="_blank" 
-   rel="noopener noreferrer">
-    <i class="fas fa-envelope"></i> Send us an Email
-</a>
-
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Collabify Space</h3>
-                    <p>One Space. Infinite Connections.</p>
-                    <p>Your global partner for staffing, projects, AI solutions, and growth.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <p><a href="#about" style="color: var(--text-secondary); text-decoration: none;">About Us</a></p>
-                    <p><a href="#services" style="color: var(--text-secondary); text-decoration: none;">Services</a></p>
-                    <p><a href="#process" style="color: var(--text-secondary); text-decoration: none;">How We Work</a></p>
-                    <p><a href="#contact" style="color: var(--text-secondary); text-decoration: none;">Contact</a></p>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect With Us</h3>
-                    <div class="social-links">
-    <a href="https://www.instagram.com/collabify_services_page/" target="_blank" title="Instagram">
-        <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://wa.me/918341632939" target="_blank" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="mailto:team@collabifyspace.com?subject=Collabify%20Service%20Inquiry" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       title="Email">
-        <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://linkedin.com/company/collabifyspace" target="_blank" title="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-    </a>
-</div>
-    </footer>
+    </div>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenu = document.getElementById('mobileMenu');
-        const navLinks = document.getElementById('navLinks');
+        // Header scroll effect
+        const header = document.getElementById('header');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
 
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenu.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
 
         // Close mobile menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
+        document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = mobileMenu.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
         });
 
-        // Tab Functionality
-        function openTab(evt, tabName) {
-            const tabContent = document.getElementsByClassName('tab-content');
-            for (let i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove('active');
-            }
-
-            const tabButtons = document.getElementsByClassName('tab-button');
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        // Smooth scroll with offset for fixed nav
+        // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offset = 80;
-                    const targetPosition = target.offsetTop - offset;
+                    const headerHeight = 80;
+                    const targetPosition = target.offsetTop - headerHeight;
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -1003,27 +1123,49 @@
             });
         });
 
-        // Add scroll animation to elements
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Services scroll animation - fade in when in view
+        const serviceSlides = document.querySelectorAll('.service-slide');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        function checkServiceSlides() {
+            serviceSlides.forEach(slide => {
+                const rect = slide.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Check if the slide is in the viewport
+                if (rect.top < windowHeight * 0.75 && rect.bottom > windowHeight * 0.25) {
+                    slide.classList.add('in-view');
+                } else {
+                    slide.classList.remove('in-view');
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.glass-card, .step, .about-item').forEach(el => {
-            el.style.opacity = '0';
-            observer.observe(el);
+        window.addEventListener('scroll', checkServiceSlides);
+        window.addEventListener('resize', checkServiceSlides);
+        
+        // Initial check
+        checkServiceSlides();
+
+        // Sticky CTA
+        const stickyCta = document.getElementById('stickyCta');
+        const heroSection = document.querySelector('.hero');
+
+        window.addEventListener('scroll', () => {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            if (window.scrollY > heroBottom) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We\'ll get back to you within 24 hours.');
+            this.reset();
         });
     </script>
+
 </body>
 </html>
-
-
-
