@@ -1069,41 +1069,106 @@
     </section>
     </section> <!-- End of Contact Section -->
 
-    <!-- ===== FOOTER ===== -->
-<footer style="background:#13131a; color:#a0a0b0; padding:60px 40px; font-family:sans-serif;">
-  <div style="max-width:1400px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:40px;">
+   <!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-container">
     <!-- About -->
-    <div style="flex:1; min-width:250px;">
-      <h2 style="color:#ffffff; font-size:1.5rem; margin-bottom:16px;">Collabify Space</h2>
-      <p style="line-height:1.6;">One Space. Infinite Connections.<br>
+    <div class="footer-section about">
+      <h2>Collabify Space</h2>
+      <p>One Space. Infinite Connections.<br>
       Scaling agencies & businesses with tech, automation & growth.</p>
     </div>
 
     <!-- Services -->
-    <div style="flex:1; min-width:200px;">
-      <h3 style="color:#ffffff; margin-bottom:16px;">Services</h3>
-      <ul style="list-style:none; padding:0; line-height:2;">
-        <li><a href="#dashboards" style="color:#a0a0b0; text-decoration:none;">Dashboards & Automation</a></li>
-        <li><a href="#websites" style="color:#a0a0b0; text-decoration:none;">Website Development</a></li>
-        <li><a href="#marketing" style="color:#a0a0b0; text-decoration:none;">Digital Marketing</a></li>
+    <div class="footer-section services">
+      <h3>Services</h3>
+      <ul>
+        <li><a href="#dashboards">Dashboards & Automation</a></li>
+        <li><a href="#websites">Website Development</a></li>
+        <li><a href="#marketing">Digital Marketing</a></li>
       </ul>
     </div>
 
     <!-- Contact -->
-    <div style="flex:1; min-width:200px;">
-      <h3 style="color:#ffffff; margin-bottom:16px;">Get in Touch</h3>
-      <ul style="list-style:none; padding:0; line-height:2;">
-        <li>📧 <a href="mailto:hello@collabifyspace.com" style="color:#a0a0b0; text-decoration:none;">Email Us</a></li>
-        <li>📱 <a href="https://wa.me/919000000000" style="color:#a0a0b0; text-decoration:none;">WhatsApp</a></li>
-        <li>📅 <a href="#schedule" style="color:#a0a0b0; text-decoration:none;">Schedule Call</a></li>
+    <div class="footer-section contact">
+      <h3>Get in Touch</h3>
+      <ul>
+        <li>📧 <a href="mailto:hello@collabifyspace.com">Email Us</a></li>
+        <li>📱 <a href="https://wa.me/919000000000" target="_blank">WhatsApp</a></li>
+        <li>📸 <a href="https://instagram.com/collabifyspace" target="_blank">Instagram</a></li>
+        <li>📅 <a href="#schedule">Schedule Call</a></li>
       </ul>
     </div>
   </div>
 
-  <div style="text-align:center; margin-top:40px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:0.9rem; color:#6b6b7b;">
+  <div class="footer-bottom">
     &copy; 2026 Collabify Space. All Rights Reserved.
   </div>
 </footer>
+
+<style>
+/* Footer Styling */
+.footer {
+  background: #13131a;
+  color: #a0a0b0;
+  padding: 60px 20px 20px;
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+}
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+.footer h2, .footer h3 {
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+.footer p {
+  line-height: 1.6;
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+  line-height: 2;
+}
+.footer a {
+  color: #a0a0b0;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.footer a:hover {
+  color: #ff6a00; /* Collabify Orange Accent */
+  transform: translateX(5px);
+}
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  font-size: 0.9rem;
+  color: #6b6b7b;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .footer-section {
+    min-width: 100%;
+  }
+}
+</style>
 
 
        
@@ -1197,6 +1262,7 @@
 
 </body>
 </html>
+
 
 
 
